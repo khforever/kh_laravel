@@ -1,5 +1,6 @@
 <?php
 
+ 
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,33 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+//////////// Day 3
+
+Route::get('login', function () {
+    return view('login');
+});
+
+
+Route::post('logged', function () {
+    return ('You are login');
+})->name('logged');
+
+
+
+Route::get('control', [ExampleController::class,'show'])  ;
+
+////////////     The end of  Day 3
+
+
+
+
+
+
+
+
 //////////// The second task
 
 Route::get('About', function () {
