@@ -11,4 +11,28 @@ class ExampleController extends Controller
 
         return 'welcome the first controller';
     }
+
+
+    public function login()
+    {
+
+        return view('login');
+    }
+
+    public function logged(Request $request)
+    {
+
+        
+
+        $email= $request['email'];
+
+        $password=$request['pwd'];
+
+        return $email .' <br>'. $password;
+
+        
+        
+    }
+
+
 }

@@ -1,6 +1,6 @@
 <?php
 
- 
+ use App\Http\Controllers\ExampleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,19 +17,43 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+////////task 3
+
+
+
+Route::get('login', [ExampleController::class,'login'])  ;
+
+
+
+
+Route::post('logged',[ExampleController::class,'logged'] 
+
+
+)->name('logged');
+
+
+
+//////////the end of task3
+
+
+
+
 
 
 
 //////////// Day 3
 
-Route::get('login', function () {
-    return view('login');
-});
 
 
-Route::post('logged', function () {
-    return ('You are login');
-})->name('logged');
+
+// Route::get('login', function () {
+//     return view('login');
+// });
+
+
+// Route::post('logged', function () {
+//     return ('You are login');
+// })->name('logged');
 
 
 
