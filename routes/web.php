@@ -17,6 +17,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+//////// another solution for task3
+
+
+Route::get('login1', [ExampleController::class,'login1'])  ;
+
+
+
+
+Route::post('logged1',[ExampleController::class,'logged1'] 
+
+
+)->name('logged1');
+
+
+
+
+
+
+
+//////// the end  another solution for task3
+
 ////////task 3
 
 

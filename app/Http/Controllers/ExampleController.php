@@ -13,6 +13,8 @@ class ExampleController extends Controller
     }
 
 
+    //the first solution   of task3
+
     public function login()
     {
 
@@ -34,5 +36,36 @@ class ExampleController extends Controller
         
     }
 
+
+
+
+
+////////////////////////
+
+
+
+//the second solution   of task3
+
+
+public function login1()
+{
+
+    return view('login1');
+}
+
+
+public function logged1(Request $request)
+{
+
+    
+ 
+   return $request->all();
+
+    
+    
+}
+
+
+ 
 
 }
