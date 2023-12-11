@@ -1,6 +1,8 @@
 <?php
 
- use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
 
 
 
@@ -226,3 +231,35 @@ Route:: prefix('lar')->group(function()
 
 }
 );
+
+
+
+
+///// Day4
+
+
+Route::get('addCar',[CarController::class,'create']);
+
+Route::post('storeCar',[CarController::class,'store'])->name('storecar') ;
+
+
+Route::get('cars',[CarController::class,'index']);
+
+
+
+
+
+
+//Route::get('store1',[CarController::class,'store1']);
+
+
+
+// Task 4
+ 
+
+Route::get('addPost',[PostController::class,'create']);
+
+
+Route::post('storePost',[PostController::class,'store'])->name('storePost');
+
+
