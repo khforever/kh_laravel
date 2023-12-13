@@ -234,23 +234,29 @@ Route:: prefix('lar')->group(function()
 
 
 
+//Route::get('store1',[CarController::class,'store1']);
 
-///// Day4
 
 
-Route::get('addCar',[CarController::class,'create']);
+///// Day4 && Day 5
+
+
+Route::get('addCar',[CarController::class,'create'])->name('addCar');
 
 Route::post('storeCar',[CarController::class,'store'])->name('storecar') ;
 
 
-Route::get('cars',[CarController::class,'index']);
+Route::get('cars',[CarController::class,'index'])->name('cars');
+
+
+Route::get('updateCar/{id}',[CarController::class,'edit']);
 
 
 
+Route::put('update/{id}',[CarController::class,'update'])->name('update');
 
 
-
-//Route::get('store1',[CarController::class,'store1']);
+Route::get('showCar/{id}',[CarController::class,'show']);
 
 
 
@@ -263,3 +269,18 @@ Route::get('addPost',[PostController::class,'create']);
 Route::post('storePost',[PostController::class,'store'])->name('storePost');
 
 
+// Task 5
+
+
+Route::get('posts',[PostController::class,'index'])->name('posts');
+
+
+Route::get('updatePost/{id}',[PostController::class,'edit']);
+
+
+
+Route::put('update/{id}',[PostController::class,'update'])->name('update');
+
+
+
+Route::get('showPost/{id}',[PostController::class,'show']);

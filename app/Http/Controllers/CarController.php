@@ -27,22 +27,33 @@ class CarController extends Controller
   /**
      * Store a newly created resource in storage.
      */
+
+ 
+  private $columns = ['title', 'description','published'];
+
+
     public function store(Request $request)
     {
-        $cars=new Car();
-        $cars->title =$request->title;
-        $cars->description=$request->description;
-        if($request->published)
-        {
-            $cars->published=1;
+        // $cars=new Car();
+        // $cars->title =$request->title;
+        // $cars->description=$request->description;
+        // if($request->published)
+        // {
+        //     $cars->published=1;
 
-        }
-        else
-        $cars->published=0;
+        // }
+        // else
+        // $cars->published=0;
         
         
-        $cars->save();
-        return "Data added successfully";
+        // $cars->save();
+        // return "Data added successfully";
+
+      $data=$request->only($this->columns); 
+      $data['published']=isset($request->published);
+      Car::create ($data);
+      return redirect('cars');
+
     }
 
 
@@ -64,7 +75,10 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+
+        $car = Car::findOrFail($id);
+       return view('showCar',compact('car'));
     }
 
     /**
@@ -72,7 +86,9 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $car = Car::findOrFail($id);
+       return view('updateCar',compact('car'));
     }
 
     /**
@@ -80,7 +96,12 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
+      $data=$request->only($this->columns); 
+      $data['published']=isset($request->published);
+      Car::where ('id',$id) ->update($data);
+      return redirect('cars');
+
     }
 
     /**

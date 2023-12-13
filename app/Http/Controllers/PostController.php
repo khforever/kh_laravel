@@ -12,7 +12,8 @@ class PostController extends Controller
      */
     public function index()
     {
-      //
+      $posts =Post::get();
+      return view('posts',compact('posts'));
     }
 
     /**
@@ -42,14 +43,17 @@ class PostController extends Controller
         
         
         $posts->save();
-        return "Data added successfully";
+       // return "Data added successfully";
+
+       return redirect('posts');
     }
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('showPost',compact('post'));
     }
 
     /**
@@ -57,15 +61,26 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+       return view('updatePost',compact('post'));
     }
+
+    
+ 
+  private $columns = ['postTitle', 'created_at'];
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+       
+      $data=$request->only($this->columns); 
+      
+      Post::where ('id',$id) ->update($data);
+      return redirect('posts');
     }
 
     /**

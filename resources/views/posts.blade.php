@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Posts</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,38 +9,30 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('includes.nav')
+@include('includes.navPost')
 <div class="container">
-  <h2>The list of car</h2>
+  <h2>The list of post</h2>
   <p></p>            
   <table class="table table-hover">
     <thead>
       <tr>
         <th>title</th>
-        <th>description</th>
-        <th>published</th>
+        <th>Created_at</th>
+ 
         <th>Edit</th>
         <th>Show</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($cars as $car)
+        @foreach($posts as $post)
       <tr>
-        <td>{{$car->title}}</td>
-        <td>{{$car->description}}</td>
-        <td>
-            @if ($car->published==1)
-           yes
-        @else
-        
-            no
+        <td>{{$post->postTitle}}</td>
+        <td>{{$post->created_at}}</td>
        
-        @endif
-        </td>
         
-<td><a href="updateCar/{{ $car->id }}">Edit</a></td>
+<td><a class="btn btn-success"  href="updatePost/{{ $post->id }}">Edit</a></td>
 
-<td><a href="showCar/{{ $car->id }}">show</a></td>
+<td><a class="btn btn-info"   href="showPost/{{ $post->id }}">show</a></td>
       </tr>
    @endforeach
     </tbody>
