@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -29,23 +30,43 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $posts=new Post();
-        $posts->postTitle =$request->postTitle;
-        $posts->author =$request->author;
-        $posts->description=$request->description;
-        if($request->published)
-        {
-            $posts->published=1;
+    //     $posts=new Post();
+    //     $posts->postTitle =$request->postTitle;
+    //     $posts->author =$request->author;
+    //     $posts->description=$request->description;
+    //     if($request->published)
+    //     {
+    //         $posts->published=1;
 
-        }
-        else
-        $posts->published=0;
+    //     }
+    //     else
+    //     $posts->published=0;
         
         
-        $posts->save();
-       // return "Data added successfully";
+    //     $posts->save();
+    //    // return "Data added successfully";
 
-       return redirect('posts');
+    //    return redirect('posts');
+
+
+//best practice validate
+
+
+
+$data=$request->validate([
+  'postTitle'=>'required|string|max:50',
+  'author'=>'required|string|max:50',
+  'description'=>'required|string'
+  
+ ]);
+  $data['published']=isset($request->published);
+ Post::create ($data);
+  return redirect('posts');
+
+
+
+
+
     }
     /**
      * Display the specified resource.
@@ -88,6 +109,48 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Post::where('id',$id)->delete();
+        return redirect('posts');
     }
+
+
+    public function forceDelete(string $id)
+    {
+        
+    Post::where('id',$id)->forceDelete();
+        return  redirect('posts');
+        
+    }
+
+    public function trashed()
+    {
+        
+     
+        $posts = Post::onlyTrashed()->get();
+        return view('posttrashed', compact('posts'));
+        
+        
+
+    }
+
+
+
+
+    public function restore(string $id)
+    {
+        
+    Post::where('id',$id)->restore();
+        return  redirect('posts');
+        
+        
+
+    }
+
+
+
+
+
+
+
+
 }

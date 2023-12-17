@@ -17,22 +17,39 @@
     <thead>
       <tr>
         <th>title</th>
-        <th>Created_at</th>
- 
+        <th>Description</th>
+        <th>Author</th>
+        <th>Published</th>
         <th>Edit</th>
         <th>Show</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
         @foreach($posts as $post)
       <tr>
         <td>{{$post->postTitle}}</td>
-        <td>{{$post->created_at}}</td>
+        <td>{{$post->description}}</td>
+        <td>{{$post->author}}</td>
+        <td>
+            @if ($post->published==1)
+           yes
+        @else
+        
+            no
+       
+        @endif
+        </td>
+       
        
         
 <td><a class="btn btn-success"  href="updatePost/{{ $post->id }}">Edit</a></td>
 
 <td><a class="btn btn-info"   href="showPost/{{ $post->id }}">show</a></td>
+
+
+<td><a  class="btn btn-danger" href="deletePost/{{ $post->id }}"onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+
       </tr>
    @endforeach
     </tbody>

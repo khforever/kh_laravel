@@ -29,7 +29,7 @@ class CarController extends Controller
      */
 
  
-  private $columns = ['title', 'description','published'];
+   private $columns = ['title', 'description','published'];
 
 
     public function store(Request $request)
@@ -49,7 +49,17 @@ class CarController extends Controller
         // $cars->save();
         // return "Data added successfully";
 
-      $data=$request->only($this->columns); 
+     // $data=$request->only($this->columns); 
+
+
+     /////////validate
+
+     
+     $data=$request->validate([
+      'title'=>'required|string|max:50',
+      'description'=>'required|string'
+      
+     ]);
       $data['published']=isset($request->published);
       Car::create ($data);
       return redirect('cars');
@@ -109,6 +119,46 @@ class CarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+      Car::where ('id',$id) ->delete();
+      return redirect('cars');
+
     }
+  /**
+     * Remove the specified resource from storage.
+     */
+    public function trashed()
+    {
+        
+     
+        $cars = Car::onlyTrashed()->get();
+        return view('trashed', compact('cars'));
+        
+        
+
+    }
+    public function forceDelete(string $id)
+    {
+        
+    Car::where('id',$id)->forceDelete();
+        return  redirect('cars');
+        
+        
+
+    }
+
+    public function restore(string $id)
+    {
+        
+    Car::where('id',$id)->restore();
+        return  redirect('cars');
+        
+        
+
+    }
+
+
+
+
 }
+

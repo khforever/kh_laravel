@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>trashed</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,7 +11,7 @@
 <body>
 @include('includes.nav')
 <div class="container">
-  <h2>The list of car</h2>
+  <h2>The trashed car</h2>
   <p></p>            
   <table class="table table-hover">
     <thead>
@@ -19,9 +19,9 @@
         <th>title</th>
         <th>description</th>
         <th>published</th>
-        <th>Edit</th>
-        <th>Show</th>
+       
         <th>Delete</th>
+        <th>Restore Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -39,10 +39,11 @@
         @endif
         </td>
         
-<td><a class="btn btn-success" href="updateCar/{{ $car->id }}">Edit</a></td>
+ 
+<td><a  class="btn btn-danger" href="forceDelete/{{ $car->id }}"onclick="return confirm('Are you sure you want to delete?')">Force Delete</a></td>
 
-<td><a class="btn btn-info"  href="showCar/{{ $car->id }}">show</a></td>
-<td><a  class="btn btn-danger" href="deleteCar/{{ $car->id }}"onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+ 
+<td><a  class="btn btn-success" href="restoreCar/{{ $car->id }}" >Restore Delete</a></td>
 
       </tr>
    @endforeach

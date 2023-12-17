@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>trashed</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,9 +9,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('includes.nav')
+@include('includes.navPost')
 <div class="container">
-  <h2>The list of car</h2>
+  <h2>The trashed post</h2>
   <p></p>            
   <table class="table table-hover">
     <thead>
@@ -19,18 +19,18 @@
         <th>title</th>
         <th>description</th>
         <th>published</th>
-        <th>Edit</th>
-        <th>Show</th>
-        <th>Delete</th>
+       
+        <th>Force Delete</th>
+        <th>Restore Delete</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($cars as $car)
+        @foreach($posts as $post)
       <tr>
-        <td>{{$car->title}}</td>
-        <td>{{$car->description}}</td>
+        <td>{{$post->postTitle}}</td>
+        <td>{{$post->description}}</td>
         <td>
-            @if ($car->published==1)
+            @if ($post->published==1)
            yes
         @else
         
@@ -39,10 +39,11 @@
         @endif
         </td>
         
-<td><a class="btn btn-success" href="updateCar/{{ $car->id }}">Edit</a></td>
+ 
+<td><a  class="btn btn-danger" href="postforceDelete/{{ $post->id }}"onclick="return confirm('Are you sure you want to delete?')">Force Delete</a></td>
 
-<td><a class="btn btn-info"  href="showCar/{{ $car->id }}">show</a></td>
-<td><a  class="btn btn-danger" href="deleteCar/{{ $car->id }}"onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+ 
+<td><a  class="btn btn-success" href="postsrestorepost/{{ $post->id }}" >Restore Delete</a></td>
 
       </tr>
    @endforeach
