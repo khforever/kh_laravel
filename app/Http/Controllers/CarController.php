@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+
+
+use App\Traits\Common;
 class CarController extends Controller
 {
+
+  use Common;
     /**
      * Display a listing of the resource.
      */
@@ -53,13 +58,21 @@ class CarController extends Controller
 
 
      /////////validate
+     $messages = $this->messages();
 
-     
+
      $data=$request->validate([
       'title'=>'required|string|max:50',
-      'description'=>'required|string'
+      'description'=>'required|string',
+       'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+
       
-     ]);
+     ],$messages);
+
+     $fileName = $this->uploadFile($request->image, 'assets/images');    
+     $data['image'] = $fileName;
+
+
       $data['published']=isset($request->published);
       Car::create ($data);
       return redirect('cars');
@@ -157,7 +170,20 @@ class CarController extends Controller
 
     }
 
+public function messages()
 
+{
+
+
+  return [
+    'title.required'=>'عنوان السياره مطلوب',
+    'title.string'=>'Should be string',
+    'description.required'=> 'should be text',
+    'image.required'=> 'Please be sure to select an image',
+            'image.mimes'=> 'Incorrect image type',
+            'image.max'=> 'Max file size exceeded',
+    ];
+}
 
 
 }

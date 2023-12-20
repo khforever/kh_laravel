@@ -278,6 +278,46 @@ Route::get('restoreCar/{id}',[CarController::class,'restore'])->name('restoreCar
 
 
 
+
+
+
+
+
+ 
+// Day 7
+
+Route:: get ('tests',function ()
+{
+    return  view('tests')  ;
+}
+);
+
+
+Route:: get ('image',function ()
+{
+    return  view('image')  ;
+}
+);
+
+Route::post('imageUpload', [ExampleController::class,'upload'])->name('imageUpload')  ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Task 4
  
 
