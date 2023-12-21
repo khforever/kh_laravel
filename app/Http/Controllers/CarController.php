@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Support\Facades\File;
 
 
 use App\Traits\Common;
@@ -34,7 +35,7 @@ class CarController extends Controller
      */
 
  
-   private $columns = ['title', 'description','published'];
+   private $columns = ['title', 'description','published','image'];
 
 
     public function store(Request $request)
@@ -120,12 +121,58 @@ class CarController extends Controller
     public function update(Request $request, string $id)
     {
        
-      $data=$request->only($this->columns); 
+      // $data=$request->only($this->columns); 
+      // $data['published']=isset($request->published);
+      // Car::where ('id',$id) ->update($data);
+      // return redirect('cars');
+//////////////////////////////////////////////////////////////////////////
+
+
+     /////////validate
+    
+     ///validate
+     $messages = $this->messages();
+
+
+     $data=$request->validate([
+      'title'=>'required|string|max:50',
+      'description'=>'required|string',
+      'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+
+       
+      
+     ],$messages);
+
+     
+     //$data=$request->only($this->columns); 
       $data['published']=isset($request->published);
+       //$data['image']=$request->image;
+   if($request->hasFile('image'))
+   {
+    $fileName = $this->uploadFile($request->image, 'assets/images');    
+    $data['image'] = $fileName;
+
+
+
+   }
+
+    
+
       Car::where ('id',$id) ->update($data);
-      return redirect('cars');
+      //return 'updated';
+       return redirect('cars');
+
+
+   
+ 
 
     }
+
+
+ 
+
+
+
 
     /**
      * Remove the specified resource from storage.

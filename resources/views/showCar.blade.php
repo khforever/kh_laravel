@@ -20,5 +20,12 @@
 
 {{$car->published?"published":"Not published"}}
 </p>
+
+
+
+<br>
+
+
+<img src="{{ asset('assets/images/'.$car->image) }}" alt="car" style="width:200px;">
 </body>
 </html>

@@ -19,6 +19,8 @@
         <th>title</th>
         <th>description</th>
         <th>published</th>
+        <th>Image</th>
+        <th>Image Preview</th>
         <th>Edit</th>
         <th>Show</th>
         <th>Delete</th>
@@ -38,6 +40,8 @@
        
         @endif
         </td>
+        <td>{{$car->image}}</td>
+        <td><img src="{{ asset('assets/images/'.$car->image) }}" alt="car" style="width:100px;"></td>
         
 <td><a class="btn btn-success" href="updateCar/{{ $car->id }}">Edit</a></td>
 

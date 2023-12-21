@@ -337,7 +337,7 @@ Route::get('updatePost/{id}',[PostController::class,'edit']);
 
 
 
-Route::put('update/{id}',[PostController::class,'update'])->name('update');
+Route::put('updatePost/{id}',[PostController::class,'update'])->name('updatePost');
 
 
 
