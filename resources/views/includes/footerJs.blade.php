@@ -41,4 +41,4 @@
 		<script src="{{ asset('assets/js/main.js') }}"></script>
 
 
-		yield('js')
+		@yield('js')

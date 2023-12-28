@@ -55,7 +55,7 @@
 											<li><a href="#">Services </a></li>
 											<li><a href="#">Pages <i class="icofont-rounded-down"></i></a>
 												<ul class="dropdown">
-													<li><a href="404.html">404 Error</a></li>
+													<li><a href="{{route('404')}}">404 Error</a></li>
 												</ul>
 											</li>
 											<li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>

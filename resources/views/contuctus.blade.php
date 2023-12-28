@@ -1,6 +1,15 @@
 
 @extends('layouts.pages')
 
+
+
+@section('title')
+Contuct Us 
+@endsection
+
+
+
+
 @section('content')
 
 

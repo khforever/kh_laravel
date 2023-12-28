@@ -1,6 +1,11 @@
 
 @extends('layouts.pages')
 
+
+@section('title')
+Error Page
+@endsection
+
 @section('content')
 
 
@@ -25,6 +30,9 @@
 			</div>
 		</section>	
 		<!--/ End Error Page -->
+
+
+
 		
 
 
