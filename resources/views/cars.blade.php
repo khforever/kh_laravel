@@ -18,6 +18,9 @@
       <tr>
         <th>title</th>
         <th>description</th>
+       
+        <th>Category Name</th>
+        <th>Category Id</th>
         <th>published</th>
         <th>Image</th>
         <th>Image Preview</th>
@@ -31,6 +34,9 @@
       <tr>
         <td>{{$car->title}}</td>
         <td>{{$car->description}}</td>
+
+        <td>{{$car->category->cat_name}} </td>
+        <td>{{$car->category_id}}</td>
         <td>
             @if ($car->published==1)
            yes

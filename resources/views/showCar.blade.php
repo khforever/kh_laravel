@@ -15,6 +15,9 @@
 <h2>     {{$car->created_at}}    </h2>
 
 <h2>     {{$car->updated_at}}    </h2>
+
+
+<h2>     {{$car->category->cat_name}}    </h2>
 <p>
 
 

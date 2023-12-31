@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Category;
 use Illuminate\Support\Facades\File;
 
 
@@ -28,7 +29,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('addCar');
+
+      $categories=Category::get();
+        return view('addCar',compact('categories'));
     }
   /**
      * Store a newly created resource in storage.
@@ -66,7 +69,7 @@ class CarController extends Controller
       'title'=>'required|string|max:50',
       'description'=>'required|string',
        'image' => 'required|mimes:png,jpg,jpeg|max:2048',
-
+       'category_id'=>'required',
       
      ],$messages);
 
@@ -112,7 +115,8 @@ class CarController extends Controller
     {
 
         $car = Car::findOrFail($id);
-       return view('updateCar',compact('car'));
+        $categories=Category:: get();
+       return view('updateCar',compact('car','categories'));
     }
 
     /**
@@ -229,6 +233,8 @@ public function messages()
     'image.required'=> 'Please be sure to select an image',
             'image.mimes'=> 'Incorrect image type',
             'image.max'=> 'Max file size exceeded',
+            'category_id.required'=>'Should be string',
+
     ];
 }
 
