@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 
 class ExampleController extends Controller
@@ -74,4 +75,69 @@ public function upload(Request $request){
     return 'Uploaded';
 
 }
+
+
+
+
+
+public function createsession( )
+
+{    
+    
+    
+    session()->put('testsession', 'First Laravel session');
+
+    
+    return 'session created'. session('testsession');
+
+}
+
+
+
+
+
+
+
+public function contact()
+{
+
+    return  view('contuctus')  ;
+}
+
+
+
+//receiveContact
+
+
+
+public function receiveContact(Request $request)
+{
+
+$content=[
+
+'name'=>$request->name,
+'email'=>$request->email,
+'subject'=>$request->subject,
+'phone'=>$request->phone,
+ 
+'message'=>$request->message,
+
+
+];
+
+Mail::to('kk@gmail.com')->send(new ContactMail($content),);
+
+    return "mail sent";
+}
+
+
+
+
+
+
+
+
+
+
+
 }

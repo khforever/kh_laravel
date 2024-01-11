@@ -5,6 +5,7 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SendMailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,9 +104,9 @@ Route::get('About', function () {
     return view('about');
 });
 
-Route::get('Contact', function () {
-    return view('contactus');
-});
+// Route::get('Contact', function () {
+//     return view('contactus');
+// });
 
 
 
@@ -243,7 +244,14 @@ Route:: prefix('lar')->group(function()
 ///// Day4 && Day 5 && Day6
 
 
-Route::get('addCar',[CarController::class,'create'])->name('addCar');
+
+//Route::get('createCar',[CarController::class,'create'])->middleware('verified')->name('createCar');
+
+
+Route::get('addCar',[CarController::class,'create'])->middleware('verified')->name('addCar');
+
+
+//Route::get('addCar',[CarController::class,'create'])->name('addCar');
 
 Route::post('storeCar',[CarController::class,'store'])->name('storecar') ;
 
@@ -315,9 +323,6 @@ Route:: get ('testHome',function ()
 )->name('testHome');
 
 
-
-
-
 Route:: get ('404',function ()
 {
     return  view('404')  ;
@@ -325,14 +330,11 @@ Route:: get ('404',function ()
 )->name('404');
 
 
-
-
-
-Route:: get ('contuctus',function ()
-{
-    return  view('contuctus')  ;
-}
-)->name('contuctus');
+// Route:: get ('contuctus',function ()
+// {
+//     return  view('contuctus')  ;
+// }
+// )->name('contuctus');
 
 
 
@@ -389,3 +391,44 @@ Route::get('postforceDelete/{id}',[PostController::class,'forceDelete'])->name('
 
 Route::get('postsrestorepost/{id}',[PostController::class,'restore'])->name('postsrestorepost');
 
+
+/// Day 11
+
+
+Auth::routes(['verify'=>true]);
+
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/// Day 12
+
+
+Route::get('session', [ExampleController::class,'createsession']) ;
+
+
+//Task 12
+
+
+
+//Route::get('sendMail', [SendMailController::class, 'index']);
+
+
+
+
+
+
+// Route:: get ('contuctus',function ()
+// {
+//     return  view('contuctus')  ;
+// }
+// )->name('contuctus');
+
+
+
+
+
+Route::get ('contactMail',[ExampleController::class,'contact'])->name('contuctus');
+
+Route::post ('receiveContact',[ExampleController::class,'receiveContact'])->name('receiveContact');
