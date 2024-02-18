@@ -1,3 +1,12 @@
+
+
+
+<html lang="{{LaravelLocalization::getCurrentLocale()}}" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+
+
+
+
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -8,6 +17,11 @@
       <li><a href="{{route('addCar')}}">add Car</a></li>
       <li><a href="{{route('trashed')}}">trashed</a></li>
       <li><a href="#">Page 3</a></li>
+
+      <li><a href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a></li>
+
+      <li><a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">عربي</a></li>
+
     </ul>
   </div>
 </nav>

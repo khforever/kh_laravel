@@ -109,41 +109,41 @@ Route::get('About', function () {
 // });
 
 
+////////////////////////////////prefix///////////////////////////
+
+// Route:: prefix('Blog')->group(function()
 
 
-Route:: prefix('Blog')->group(function()
-
-
-{
-    Route:: get ('Science',function ()
-    {
-        return view('science');
-    }
-    );
-    Route:: get ('Sports',function ()
-    {
-        return view('sports');
-    }
-    );
+// {
+//     Route:: get ('Science',function ()
+//     {
+//         return view('science');
+//     }
+//     );
+//     Route:: get ('Sports',function ()
+//     {
+//         return view('sports');
+//     }
+//     );
         
     
-    Route:: get ('Math',function ()
-    {
-        return view('math');
-    }
-    );
+//     Route:: get ('Math',function ()
+//     {
+//         return view('math');
+//     }
+//     );
         
-    Route:: get ('Medical',function ()
-    {
-        return view('medical');
-    }
-    );
+//     Route:: get ('Medical',function ()
+//     {
+//         return view('medical');
+//     }
+//     );
         
     
         
 
-}
-);
+// }
+// );
 
 
 
@@ -248,6 +248,19 @@ Route:: prefix('lar')->group(function()
 //Route::get('createCar',[CarController::class,'create'])->middleware('verified')->name('createCar');
 
 
+
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+
+
+
+
+
+
 Route::get('addCar',[CarController::class,'create'])->middleware('verified')->name('addCar');
 
 
@@ -283,7 +296,7 @@ Route::get('forceDelete/{id}',[CarController::class,'forceDelete'])->name('force
 Route::get('restoreCar/{id}',[CarController::class,'restore'])->name('restoreCar');
 
 
-
+});
 
 
 
@@ -410,9 +423,9 @@ Route::get('session', [ExampleController::class,'createsession']) ;
 
 //Task 12
 
+// How to send  static email in Laravel 10
 
-
-//Route::get('sendMail', [SendMailController::class, 'index']);
+Route::get('sendMail', [SendMailController::class, 'index']);
 
 
 
@@ -432,3 +445,7 @@ Route::get('session', [ExampleController::class,'createsession']) ;
 Route::get ('contactMail',[ExampleController::class,'contact'])->name('contuctus');
 
 Route::post ('receiveContact',[ExampleController::class,'receiveContact'])->name('receiveContact');
+
+
+// DAY 14
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 class ExampleController extends Controller
 {
@@ -124,7 +125,7 @@ $content=[
 
 
 ];
-
+Contact::create($content);
 Mail::to('kk@gmail.com')->send(new ContactMail($content),);
 
     return "mail sent";

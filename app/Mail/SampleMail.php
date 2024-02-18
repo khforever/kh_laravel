@@ -16,7 +16,7 @@ class SampleMail extends Mailable
 
 
 
-    public array $content;
+    public  $content;
     /**
      * Create a new message instance.
      */
@@ -26,13 +26,14 @@ class SampleMail extends Mailable
     }
 
 
-    public function build(): Content
-    {
+    // public function build(): Content
+    // {
 
        
-        return $this->subject($this->content['subject'])
-            ->view('emails.sample');
-    }
+    //     return $this->subject($this->content['subject'])
+    //         ->view('emails.sample');
+      
+    //   }
 
 
     /**
@@ -51,7 +52,7 @@ class SampleMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.sample',
         );
     }
 
