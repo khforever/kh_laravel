@@ -23,10 +23,10 @@ Route::get('/', function () {
 
 
 
+//////////////////////////////////////////
 
 
-
-//////// another solution for task3
+////// another solution for task3
 
 
 Route::get('login1', [ExampleController::class,'login1'])  ;
